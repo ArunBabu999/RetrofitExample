@@ -16,7 +16,7 @@ import java.util.List;
 
 import retrofit.Call;
 import retrofit.Callback;
-import retrofit.GsonConverterFactory;
+import retrofit.JacksonConverterFactory;
 import retrofit.Retrofit;
 
 public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener {
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 //While the app fetched data we are displaying a progress dialog
         final ProgressDialog loading = ProgressDialog.show(this, "Fetching Data", "Please wait...", false, false);
 
-        Retrofit client = new Retrofit.Builder().baseUrl(ROOT_URL).addConverterFactory(GsonConverterFactory.create()).build();
+        Retrofit client = new Retrofit.Builder().baseUrl(ROOT_URL).addConverterFactory(JacksonConverterFactory.create()).build();
         BooksAPI service = client.create(BooksAPI.class);
         Call<List<Book>> call = service.getBooks();
         call.enqueue(new Callback<List<Book>>() {
